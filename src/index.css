@@ -1,0 +1,74 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "DM Sans", system-ui, -apple-system, sans-serif;
+  background: #060d1b;
+  color: #dde8f8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1628;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a2d48;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #223558;
+}
+
+/* Native select dark */
+select option {
+  background: #0f1e35;
+  color: #dde8f8;
+}
+
+/* Input placeholder */
+input::placeholder {
+  color: #3c5270;
+}
+
+/* Remove default button/input styles */
+button,
+input,
+select {
+  font-family: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+/* Highlight for search */
+mark {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border-radius: 2px;
+  padding: 0 2px;
+}

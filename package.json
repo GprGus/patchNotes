@@ -1,0 +1,26 @@
+{
+  "name": "lightsystem-patchnotes",
+  "version": "2.0.0",
+  "description": "Painel de Patch Notes - Light System Soft",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev":         "concurrently -k -n \"API,UI\" -c \"cyan,green\" \"npm run dev:api\" \"npm run dev:ui\"",
+    "dev:ui":      "vite",
+    "dev:api":     "cd server && npm run dev",
+    "build":       "vite build",
+    "preview":     "vite preview",
+    "setup:server": "cd server && npm install"
+  },
+  "dependencies": {
+    "react":     "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react":        "^18.3.1",
+    "@types/react-dom":    "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently":        "^8.2.2",
+    "vite":                "^6.0.5"
+  }
+}
