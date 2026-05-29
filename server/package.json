@@ -6,7 +6,7 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "node --experimental-sqlite index.js",
     "dev": "node --watch index.js"
   },
   "engines": {
