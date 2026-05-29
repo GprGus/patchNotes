@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 
 const AuthContext = createContext(null);
 const TOKEN_KEY = "ls_patchnotes_token";
+const API_BASE = import.meta.env.VITE_API_URL ?? "";
 
 export function AuthProvider({ children }) {
   const [user, setUser]       = useState(null);
@@ -11,7 +12,7 @@ export function AuthProvider({ children }) {
     const token = localStorage.getItem(TOKEN_KEY);
     if (!token) { setLoading(false); return; }
 
-    fetch("/api/auth/me", { headers: { Authorization: `Bearer ${token}` } })
+    fetch(`${API_BASE}/api/auth/me`, { headers: { Authorization: `Bearer ${token}` } })
       .then((r) => r.json())
       .then((data) => {
         if (data.user) setUser(data.user);
@@ -22,7 +23,7 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function login(email, password) {
-    const r = await fetch("/api/auth/login", {
+    const r = await fetch(`${API_BASE}/api/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -43,7 +44,7 @@ export function AuthProvider({ children }) {
 
   function authFetch(url, opts = {}) {
     const token = localStorage.getItem(TOKEN_KEY);
-    return fetch(url, {
+    return fetch(API_BASE + url, {
       ...opts,
       headers: {
         "Content-Type": "application/json",

@@ -11,13 +11,14 @@ const releasesRoutes = require('./routes/releases');
 const app  = express();
 const PORT = process.env.PORT || 3001;
 
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+const CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:5173';
+app.use(cors({ origin: CORS_ORIGIN, credentials: true }));
 app.use(express.json());
 
-app.use('/auth',     authRoutes);
-app.use('/users',    usersRoutes);
-app.use('/backlog',  backlogRoutes);
-app.use('/releases', releasesRoutes);
+app.use('/api/auth',     authRoutes);
+app.use('/api/users',    usersRoutes);
+app.use('/api/backlog',  backlogRoutes);
+app.use('/api/releases', releasesRoutes);
 
 app.use((err, req, res, _next) => {
   console.error(err);
