@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const path = require('path');
 const { seed } = require('./db');
 
 const authRoutes     = require('./routes/auth');
@@ -19,6 +20,11 @@ app.use('/api/auth',     authRoutes);
 app.use('/api/users',    usersRoutes);
 app.use('/api/backlog',  backlogRoutes);
 app.use('/api/releases', releasesRoutes);
+
+app.use(express.static(path.join(__dirname, 'public')));
+app.get('*', (req, res, next) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'), err => { if (err) next(); });
+});
 
 app.use((err, req, res, _next) => {
   console.error(err);
