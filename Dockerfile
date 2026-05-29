@@ -3,4 +3,5 @@ WORKDIR /app
 COPY server/package*.json ./
 RUN npm install
 COPY server/ .
-CMD ["node", "--experimental-sqlite", "index.js"]
+EXPOSE 3001
+CMD ["node", "index.js"]

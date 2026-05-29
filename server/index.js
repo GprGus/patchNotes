@@ -26,4 +26,4 @@ app.use((err, req, res, _next) => {
 });
 
 seed();
-app.listen(PORT, () => console.log(`[API] http://localhost:${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`[API] http://0.0.0.0:${PORT}`));
