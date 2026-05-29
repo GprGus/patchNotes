@@ -23,18 +23,22 @@ export function AuthProvider({ children }) {
   }, []);
 
   async function login(email, password) {
-    const r = await fetch(`${API_BASE}/api/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const data = await r.json();
-    if (r.ok && data.token) {
-      localStorage.setItem(TOKEN_KEY, data.token);
-      setUser(data.user);
-      return { ok: true };
+    try {
+      const r = await fetch(`${API_BASE}/api/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await r.json();
+      if (r.ok && data.token) {
+        localStorage.setItem(TOKEN_KEY, data.token);
+        setUser(data.user);
+        return { ok: true };
+      }
+      return { ok: false, error: data.error || "Credenciais inválidas" };
+    } catch {
+      return { ok: false, error: "Não foi possível conectar ao servidor" };
     }
-    return { ok: false, error: data.error || "Erro ao fazer login" };
   }
 
   function logout() {
