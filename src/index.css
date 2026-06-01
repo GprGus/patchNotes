@@ -15,11 +15,10 @@ body,
 
 body {
   font-family: "DM Sans", system-ui, -apple-system, sans-serif;
-  background: #060d1b;
+  background: #0D1421;
   color: #dde8f8;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
 }
 
 #root {
@@ -28,47 +27,48 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0b1628;
-}
-::-webkit-scrollbar-thumb {
-  background: #1a2d48;
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #223558;
-}
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1E3148; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #264058; }
 
-/* Native select dark */
-select option {
-  background: #0f1e35;
-  color: #dde8f8;
-}
+[data-theme="light"] ::-webkit-scrollbar-thumb { background: #CBD5E1; }
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
 
-/* Input placeholder */
-input::placeholder {
-  color: #3c5270;
-}
+/* Select options */
+select option { background: #172236; color: #dde8f8; }
+[data-theme="light"] select option { background: #ffffff; color: #0F172A; }
 
-/* Remove default button/input styles */
-button,
-input,
-select {
-  font-family: inherit;
-}
+/* Placeholders */
+input::placeholder,
+textarea::placeholder { color: #3C5270; }
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder { color: #94A3B8; }
 
-button {
-  cursor: pointer;
-}
+/* Reset */
+button, input, select, textarea { font-family: inherit; }
+button { cursor: pointer; }
 
-/* Highlight for search */
+/* Search highlight */
 mark {
-  background: rgba(245, 158, 11, 0.15);
-  color: #f59e0b;
+  background: rgba(245,158,11,0.18);
+  color: #F59E0B;
   border-radius: 2px;
   padding: 0 2px;
+}
+[data-theme="light"] mark {
+  background: rgba(180,83,9,0.12);
+  color: #B45309;
+}
+
+/* Desktop: fixed height layout */
+@media (min-width: 640px) {
+  body { overflow: hidden; }
+  #root { height: 100vh; overflow: hidden; }
+}
+
+/* Mobile: natural scroll */
+@media (max-width: 639px) {
+  body { overflow-x: hidden; }
+  #root { height: auto; min-height: 100%; }
 }

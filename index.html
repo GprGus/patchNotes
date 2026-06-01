@@ -11,6 +11,13 @@
       rel="stylesheet"
     />
     <title>Patch Notes — Light System</title>
+    <script>
+      (function () {
+        var t = localStorage.getItem("ls_theme") || "dark";
+        document.documentElement.setAttribute("data-theme", t);
+        document.documentElement.style.background = t === "light" ? "#F1F5F9" : "#0D1421";
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
